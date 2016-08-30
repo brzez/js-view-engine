@@ -15,6 +15,14 @@ Template.prototype.get = function(path) {
     return get(this.data, path);
 };
 
+Template.prototype.render = function() {
+    var buffer = '';
+    this.output.forEach(function(renderable) {
+        buffer += renderable.render(); 
+    });
+    return buffer;
+};
+
 /**
  * Removes n characters from start of input
  * @param  {number|string} n number of chars to remove (or string.length)

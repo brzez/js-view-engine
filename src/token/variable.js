@@ -1,3 +1,5 @@
+import renderable from '../renderable';
+
 
 var VariableToken = {
     regex: /^{{\s*(\w+)\s*}}/,
@@ -6,7 +8,9 @@ var VariableToken = {
         if(match === null) return false;
 
         template.consume(match[0]);
-        template.output.push(template.get(match[1]));
+        template.output.push(
+            renderable(template.get(match[1]), {token: 'variable'})
+        );
 
         return true;
     }

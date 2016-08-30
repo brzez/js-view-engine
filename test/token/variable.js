@@ -10,7 +10,7 @@ describe('token/variable', () => {
             
             assert.isTrue(VariableToken.match(template));
 
-            assert.equal(template.output[0], '123');
+            assert.equal(template.render(), '123');
         }); 
     });
 });

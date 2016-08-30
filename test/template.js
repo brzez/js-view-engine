@@ -16,6 +16,25 @@ describe('template', () => {
         assert.equal(template.get('foo.bar.baz'), 123);
     });
   });
+
+  describe('.render', function() {
+    it('renders all from output array', function() {
+        var template = new Template();
+        template.output.push(
+        {
+          render: function() {
+            return '123';
+          }
+        },
+        {
+          render: function() {
+            return '456';
+          }
+        }
+        );
+        assert.equal(template.render(), '123456');
+    });
+  });
   
   describe('.consume', function() {
     it('consumes number of chars from input', function() {
