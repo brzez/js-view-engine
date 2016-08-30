@@ -9,8 +9,6 @@
     also the whole matched text w/o [start] & [end]
  */
 
-// todo: rename file
-
 var findAll = function(input, regex, transform) {
     //todo: regexes need to have 'g' flag (maybe it should test for that)
     var matches = [];
@@ -54,7 +52,9 @@ var findBlock = function(input, startRegex, endRegex) {
 
     return {
         raw: input.substring(first.match.index, last.match.index + last.match[0].length),
-        inner:  input.substring(first.match.index + first.match[0].length, last.match.index)
+        inner:  input.substring(first.match.index + first.match[0].length, last.match.index),
+        open: first.match,
+        close: last.match
     }
 };
 
