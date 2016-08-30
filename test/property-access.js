@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 
-import {get} from '../src/property-access'
+import get from '../src/property-access'
 
 describe('property-access', () => {
   describe('#get', function() {

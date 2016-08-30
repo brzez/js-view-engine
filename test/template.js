@@ -4,13 +4,19 @@ import Template from '../src/template'
 
 describe('template', () => {
   describe('.input', function() {
-
     it('stores input', function() {
         var template = new Template('banana', {});
         assert.equal(template.input, 'banana');
     });
-
   });
+  
+  describe('.get', function() {
+    it('returns data value via dot separated path', function() {
+        var template = new Template('banana', {foo: {bar: {baz: 123}}});
+        assert.equal(template.get('foo.bar.baz'), 123);
+    });
+  });
+  
   describe('.consume', function() {
     it('consumes number of chars from input', function() {
         var template = new Template('1234567890', {});

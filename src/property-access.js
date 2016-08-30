@@ -5,7 +5,7 @@
  * @param  {string} path
  * @return {any|undefined}
  */
-export function get(object, path){
+export default function get(object, path){
     var path = path.split('.');
 
     /**

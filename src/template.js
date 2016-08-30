@@ -1,13 +1,18 @@
+import get from './property-access';
 
 /**
  * @constructor
  * @param {string} input  
- * @param {object} params
+ * @param {object} data
  */
-var Template = function(input, params) {
+var Template = function(input, data) {
     this.input  = input;
-    this.params = params || {};
+    this.data = data || {};
     this.output = [];
+};
+
+Template.prototype.get = function(path) {
+    return get(this.data, path);
 };
 
 /**
