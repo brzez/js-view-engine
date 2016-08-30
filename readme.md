@@ -34,3 +34,13 @@ var some_array = [
 
 
 
+## tokenization process
+
+Read string. Match token regex from [].
+If token is matched - run it.
+
+Tokenizer will parse input, consume it (move pointer, or just eat part of string it consumed).
+It will return parsed output as string.
+
+The outputs will be later joined to string and returned as a rendered view.
+
