@@ -17,6 +17,18 @@ Tokenizer.prototype.clone = function() {
 
 Tokenizer.prototype.run = function(input, data) {
     var template = new Template(input, data);
+
+    var tokenize = () => {
+        for(var i = 0; i < this.tokens.length; i++){
+            var token = this.tokens[i];
+            if(token.match(template)){
+                return true;       
+            }
+        }
+        return false;
+    }
+    while(tokenize());
+
     return template;
 };
 
