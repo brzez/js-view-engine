@@ -11,9 +11,9 @@ var Tokenizer = function(tokens) {
     this.tokens = tokens || [];
 }
 
-Tokenizer.prototype.clone = function() {
-    return new Tokenizer(this.tokens.slice());
-};
+// Tokenizer.prototype.clone = function() {
+//     return new Tokenizer(this.tokens.slice());
+// };
 
 Tokenizer.prototype.run = function(input, data) {
     var template = new Template(input, data);
