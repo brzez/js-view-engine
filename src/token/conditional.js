@@ -1,3 +1,7 @@
+
+import Tokenizer from '../tokenizer';
+import Template from '../template';
+
 import findBlock from '../find-block'
 import renderable from '../renderable';
 
@@ -5,7 +9,9 @@ var ConditionalToken = {
     start: /{{#\s*(\w+)\s*}}/g,
     end: /{{#}}/g,
 
-    match: function(template) {
+    match: function(template, tokenizer) {
+        tokenizer = tokenizer || new Tokenizer();
+
         var match = this.start.exec(template.input);
         if(match === null || match.index != 0){
             return false;
@@ -18,12 +24,10 @@ var ConditionalToken = {
         var condition = template.get(block.open[1]);
 
         template.consume(block.raw);
-        template.output.push(
-            renderable(
-                condition ? block.inner /* todo: recursively parse this further */ : '',
-                {token: 'conditional'}
-            )
-        )
+
+        var innerTemplate = tokenizer.run(condition ? block.inner : '', template.data);
+        
+        template.output.push(innerTemplate);
 
         return true;
     }
