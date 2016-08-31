@@ -5,7 +5,7 @@ import Template from '../template';
 import findBlock from '../find-block'
 import renderable from '../renderable';
 
-var ConditionalToken = function(template, tokenizer) {
+function ConditionalToken(template, tokenizer) {
     var start = function() {
         return /{{#\s*([\w\.]+)\s*}}/g;
     };
