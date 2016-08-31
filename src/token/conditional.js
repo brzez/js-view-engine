@@ -7,7 +7,7 @@ import renderable from '../renderable';
 
 var ConditionalToken = {
     start: function() {
-        return /{{#\s*(\w+)\s*}}/g;
+        return /{{#\s*([\w\.]+)\s*}}/g;
     },
     end: function() {
         return /{{#}}/g;

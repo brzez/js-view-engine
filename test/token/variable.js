@@ -12,5 +12,12 @@ describe('token/variable', () => {
 
             assert.equal(template.render(), '123');
         }); 
+        it('works with path variables', () => {
+            var template = new Template('{{ foo.bar.baz }}', {foo: {bar: {baz: 123}}});
+            
+            assert.isTrue(VariableToken.match(template));
+
+            assert.equal(template.render(), '123');
+        }); 
     });
 });

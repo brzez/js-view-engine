@@ -5,12 +5,25 @@
 </head>
 <body>
     <textarea id="data" cols="40" rows="25">
-        {
-          "foo": "bar"
-        }
+{
+"cond": "ifs work",
+"dots":{ "in": {"pathes": "dots in var pathes work"}},
+"things": [
+    {"name": "Potato", "qty": 12},
+    {"name": "Tomato", "qty": 1},
+    {"name": "Apple", "qty": 14}
+]
+}
     </textarea>
     <textarea id="input" cols="40" rows="25">
-        Some test template stuff {{foo}}
+{{#cond}}{{cond}}{{#}} <br>
+{{dots.in.pathes}} <br>
+<strong>Loops:</strong>
+<ul>
+{{@things}}
+<li><b>{{name}}</b> qty: {{qty}}</li>
+{{@}}
+</ul>
     </textarea>
     <div id="output"></div>
 
