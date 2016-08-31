@@ -1,24 +1,19 @@
-import Template from './template';
+import render from './render'
 
-var render = function(input, data) {
-    var template = new Template(input, data);
-    var tokenizers = [
-        {
-            trigger: /^./,
-            match: function(template) {
-                var matched = template.input.match(this.trigger);
-                template.consume(matched[0]);
-                template.output.push(matched[0]);
-            }
-        }
-    ];
+var dataElement = document.querySelector('#data');
+var inputElement = document.querySelector('#input');
+var outputElement = document.querySelector('#output');
 
-    for(let i=0; i < tokenizers.length; i++){
-        var tokenizer = tokenizers[i];
-        if(template.input.match(tokenizer.trigger)){
-            return tokenizer.match(template);
-        }
-    }
+var update = function() {
+    var data = JSON.parse(dataElement.value);
+    var template = inputElement.value;
+
+    try{
+        var result = render(template, data);
+        outputElement.innerHTML = result;
+    }catch(e){ console.log(e) } 
 }
 
-export default render;
+dataElement.oninput = inputElement.oninput = update;
+
+update();
