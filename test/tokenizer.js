@@ -26,5 +26,10 @@ describe('Tokenizer', () => {
             var result = tokenizer.run('thing', {}); 
             assert.instanceOf(result, Template);
         });
+        it('should run tokens on the template', function() {
+            var tokenizer = makeTokenizer();
+            var template  = tokenizer.run('{{foo}}bar', {foo: 'foo'}); 
+            assert.equal(template.render(), 'foobar')
+        });
     });
 });

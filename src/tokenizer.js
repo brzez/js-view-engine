@@ -5,6 +5,7 @@
         if token matches - start matching from the [] again (to preserve token order)
  */
 
+import Template from './template'
 
 var Tokenizer = function(tokens) {
     this.tokens = tokens || [];
@@ -15,7 +16,8 @@ Tokenizer.prototype.clone = function() {
 };
 
 Tokenizer.prototype.run = function(input, data) {
-    
+    var template = new Template(input, data);
+    return template;
 };
 
 export default Tokenizer;
