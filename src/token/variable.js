@@ -8,7 +8,7 @@ var VariableToken = function(template) {
 
     template.consume(match[0]);
     template.output.push(
-        renderable(template.get(match[1]), {token: 'variable'})
+        renderable(template.get(match[1]))
     );
 
     return true;

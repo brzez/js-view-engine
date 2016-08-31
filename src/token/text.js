@@ -6,7 +6,7 @@ var TextToken = function(template) {
     if(match === null) return;
 
     template.consume(match[0]);
-    template.output.push(renderable(match[0], {token: 'text'}));
+    template.output.push(renderable(match[0]));
 
     return true;
 };
