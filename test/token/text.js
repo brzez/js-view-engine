@@ -10,7 +10,7 @@ describe('token/text', () => {
 
             var template = new Template(text);
             
-            while(TextToken.match(template)){}
+            while(TextToken(template)){}
 
             assert.equal(template.render(), text);
         }); 

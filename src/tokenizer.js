@@ -21,7 +21,7 @@ Tokenizer.prototype.run = function(input, data) {
     var tokenize = () => {
         for(var i = 0; i < this.tokens.length; i++){
             var token = this.tokens[i];
-            if(token.match(template, this)){
+            if(token(template, this)){
                 return true;       
             }
         }
