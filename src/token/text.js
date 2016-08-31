@@ -1,6 +1,6 @@
 import renderable from '../renderable';
 
-var TextToken = function(template) {
+function TextToken(template) {
     var regex = /^[\s\S]/;
     var match = template.input.match(regex);
     if(match === null) return;

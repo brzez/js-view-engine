@@ -5,7 +5,7 @@ import Template from '../template';
 import findBlock from '../find-block'
 import renderable from '../renderable';
 
-var LoopToken = function(template, tokenizer) {
+function LoopToken(template, tokenizer) {
     var start = function() {
         return /{{@\s*([\w\.]+)\s*}}/g;
     };
