@@ -24,10 +24,13 @@ var ConditionalToken = {
         var block = findBlock(template.input, this.start(), this.end());
         
         var condition = template.get(block.open[1]);
-
         template.consume(block.raw);
 
-        var innerTemplate = tokenizer.run(condition ? block.inner : '', template.data);
+        if(!condition){
+            return true;
+        }
+
+        var innerTemplate = tokenizer.run(block.inner, template.data);
         
         template.output.push(innerTemplate);
 
