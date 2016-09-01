@@ -3,7 +3,7 @@ import babelrc from 'babelrc-rollup';
 import istanbul from 'rollup-plugin-istanbul';
 
 export default {
-  entry: 'src/index.js',
+  entry: 'src/demo.js',
   plugins: [
     babel(babelrc()),
     // istanbul({
