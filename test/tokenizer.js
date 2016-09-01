@@ -11,15 +11,16 @@ var makeTokenizer = function() {
 }
 
 describe('Tokenizer', () => {
-    describe('#clone', function() {
-        it('should return a cloned tokenizer instance', function() {
-            var tokenizer = makeTokenizer();
-            var cloned = tokenizer.clone(); 
-            assert.instanceOf(cloned, Tokenizer);
-            assert(cloned !== tokenizer);
-            assert(cloned.tokens !== tokenizer.tokens)
-        });
-    });
+    // removed clone method - not used anyway
+    // describe('#clone', function() {
+    //     it('should return a cloned tokenizer instance', function() {
+    //         var tokenizer = makeTokenizer();
+    //         var cloned = tokenizer.clone(); 
+    //         assert.instanceOf(cloned, Tokenizer);
+    //         assert(cloned !== tokenizer);
+    //         assert(cloned.tokens !== tokenizer.tokens)
+    //     });
+    // });
     describe('#run', function() {
         it('should return a Template', function() {
             var tokenizer = makeTokenizer();

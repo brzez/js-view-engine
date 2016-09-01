@@ -5,37 +5,34 @@ import Template from '../template';
 import findBlock from '../find-block'
 import renderable from '../renderable';
 
-var ConditionalToken = {
-    start: function() {
+function ConditionalToken(template, tokenizer) {
+    var start = function() {
         return /{{#\s*([\w\.]+)\s*}}/g;
-    },
-    end: function() {
+    };
+    var end = function() {
         return /{{#}}/g;
-    },
+    };
+    tokenizer = tokenizer || new Tokenizer();
 
-    match: function(template, tokenizer) {
-        tokenizer = tokenizer || new Tokenizer();
+    var match = start().exec(template.input);
+    if(match === null || match.index != 0){
+        return false;
+    }
 
-        var match = this.start().exec(template.input);
-        if(match === null || match.index != 0){
-            return false;
-        }
+    var block = findBlock(template.input, start(), end());
+    
+    var condition = template.get(block.open[1]);
+    template.consume(block.raw);
 
-        var block = findBlock(template.input, this.start(), this.end());
-        
-        var condition = template.get(block.open[1]);
-        template.consume(block.raw);
-
-        if(!condition){
-            return true;
-        }
-
-        var innerTemplate = tokenizer.run(block.inner, template.data);
-        
-        template.output.push(innerTemplate);
-
+    if(!condition){
         return true;
     }
+
+    var innerTemplate = tokenizer.run(block.inner, template.data);
+    
+    template.output.push(innerTemplate);
+
+    return true;
 };
 
 export default ConditionalToken;

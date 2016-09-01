@@ -1,12 +1,10 @@
 
 
 
-var renderable = function(data, meta) {
+var renderable = function(data) {
     return {
-        data: data,
-        meta: meta||{},
         render: function() {
-            return this.data;
+            return data;
         }
     };
 }

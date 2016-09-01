@@ -17,13 +17,13 @@ describe('token/loop', () => {
                 {name: 'Baz'},
             ]});
 
-            assert.isTrue(LoopToken.match(template, tokenizer));
+            assert.isTrue(LoopToken(template, tokenizer));
             assert.equal(template.render(), 'FooBarBaz');
         });
         it('shouldnt render anything if not an array', function() {
             var template = new Template('{{@ things}}pancake?{{@}}', {things: "pancakes"});
 
-            assert.isTrue(LoopToken.match(template, tokenizer));
+            assert.isTrue(LoopToken(template, tokenizer));
             assert.equal(template.render(), '');
         });
     });
