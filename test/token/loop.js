@@ -11,7 +11,7 @@ describe('token/loop', () => {
         var tokenizer = new Tokenizer([VariableToken, TextToken]);
 
         it('renders elements in array', function() {
-            var template = new Template('{{@ things}}{{name}}{{@}}', {things: [
+            var template = new Template('{{@ things}}{{name}}{{/}}', {things: [
                 {name: 'Foo'},
                 {name: 'Bar'},
                 {name: 'Baz'},
@@ -21,7 +21,7 @@ describe('token/loop', () => {
             assert.equal(template.render(), 'FooBarBaz');
         });
         it('shouldnt render anything if not an array', function() {
-            var template = new Template('{{@ things}}pancake?{{@}}', {things: "pancakes"});
+            var template = new Template('{{@ things}}pancake?{{/}}', {things: "pancakes"});
 
             assert.isTrue(LoopToken(template, tokenizer));
             assert.equal(template.render(), '');

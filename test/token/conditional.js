@@ -10,13 +10,13 @@ describe('token/conditional', () => {
         var tokenizer = new Tokenizer([VariableToken]);
 
         it('renders if condition is true', function() {
-            var template = new Template('{{# foo }}{{content}}{{#}}', {foo: true, content: 'wololo'});
+            var template = new Template('{{# foo }}{{content}}{{/}}', {foo: true, content: 'wololo'});
 
             assert.isTrue(ConditionalToken(template, tokenizer));
             assert.equal(template.render(), 'wololo');
         })
         it('doesnt render if condition is false', function() {
-            var template = new Template('{{# foo }}wololo{{#}}', {foo: false});
+            var template = new Template('{{# foo }}wololo{{/}}', {foo: false});
 
             assert.isTrue(ConditionalToken(template));
             assert.equal(template.render(), '');
