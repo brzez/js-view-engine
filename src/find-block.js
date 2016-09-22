@@ -29,15 +29,15 @@ var findBlock = function(input, startRegex, endRegex) {
         return {type: 'end', match: m };
     }));
     // sort them by index
-    all.sort(function(a, b) {
-        return a.index > b.index;
+    var sorted = all.sort(function(a, b) {
+        return a.match.index - b.match.index;
     });
 
     var level = 0;
     var first, last;
     // find toplevel block
-    for(let i=0;i < all.length; i++){
-        var current = all[i];
+    for(let i=0;i < sorted.length; i++){
+        var current = sorted[i];
         if(current.type == 'start'){
             level++;
             first = first || current;
