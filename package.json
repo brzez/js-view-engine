@@ -8,8 +8,7 @@
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "pretest": "npm run build",
-    "test": "mocha",
-    "prepublish": "npm test"
+    "test": "mocha"
   },
   "author": "pawel brzezinski <pawel@brzez.com>",
   "license": "ISC",
