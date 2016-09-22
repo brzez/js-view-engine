@@ -9,7 +9,7 @@ import defaultClosingTag from './default-closing-tag';
 
 function ConditionalToken(template, tokenizer) {
     var start = function() {
-        return /{{#(!)?\s*([\w\.]+)\s*}}/g;
+        return /{{#!?\s*([\w\.]+)\s*}}/g;
     };
     tokenizer = tokenizer || new Tokenizer();
 
@@ -20,9 +20,9 @@ function ConditionalToken(template, tokenizer) {
 
     var block = findBlock(template.input, start(), defaultClosingTag());
     
-    var condition = template.get(block.open[2]);
-    // negation
-    if(block.open[1]){
+    var condition = template.get(block.open[1]);
+    if(block.open[0].includes('!')){
+        //negation
         condition = !condition;
     }
     template.consume(block.raw);
