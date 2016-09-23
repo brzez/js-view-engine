@@ -5,11 +5,12 @@ import Template from '../template';
 import findBlock from '../find-block'
 import renderable from '../renderable';
 
-import defaultClosingTag from './default-closing-tag';
-
 function ConditionalToken(template, tokenizer) {
     var start = function() {
         return /{{#!?\s*([\w\.]+)\s*}}/g;
+    };
+    var end = function() {
+        return /{{\/}}/g;
     };
     tokenizer = tokenizer || new Tokenizer();
 
@@ -18,7 +19,7 @@ function ConditionalToken(template, tokenizer) {
         return false;
     }
 
-    var block = findBlock(template.input, start(), defaultClosingTag());
+    var block = findBlock(template.input, start(), end());
     
     var condition = template.get(block.open[1]);
     if(block.open[0].includes('!')){
