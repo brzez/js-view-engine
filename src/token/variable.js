@@ -23,14 +23,17 @@ return String(string).replace(/[&<>"'`=\/]/g, function(s){
 }
 
 function VariableToken(template) {
-    var regex = /^{{\s*([\w\.]+)\s*}}/;
+    var regex = /^{{(\$?)\s*([\w\.]+)\s*}}/;
     var match = template.input.match(regex);
     if(match === null) return false;
+
+    var variable = template.get(match[2]); 
+    var shouldEscape = (match[1] !== '$');
 
     template.consume(match[0]);
     template.output.push(
         renderable(
-            escapeHtml(template.get(match[1]))
+            shouldEscape ? escapeHtml(variable) : variable
         )
     );
 
