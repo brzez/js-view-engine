@@ -1,7 +1,7 @@
 {
   "name": "view-engine",
   "version": "1.0.0",
-  "description": "",
+  "description": "js view engine",
   "main": "src/render.js",
   "scripts": {
     "build": "rollup -c",
