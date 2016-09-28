@@ -4,7 +4,6 @@
   "description": "",
   "main": "src/render.js",
   "scripts": {
-    "prebuild": "eslint lib test",
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "pretest": "npm run build",
