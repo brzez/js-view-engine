@@ -1,46 +1,41 @@
-# Spec:
+# Simple template engine for js
 
-## Variables
-*All variables are escaped.*
+Works in node & browsers.
+
+Written for the a-k-apart.com contest as a part of a different project.
+The main goal was to take as low space as possible. Minified it takes around 2kb which is ok.
+
+It might be a bit bugged. The aim was to write it well enough so the other project is working.
+
+** This shouldn't probably be used by anyone. just use hbs / mustache / whatever **
+
+## spec
+1. Render variable (escaped)
 ```
-{{variable}} -> displays `variable`
+{{ variable }}
 ```
-
-
-```
-{{object.object.variable}} -> deep access
-```    
-
-*Unescaped/raw output*
-
-```
-{{@ variable}}
-```
-
-## loops
-
+2. Conditionals
+Data:
 ```js
-var some_array = [
-    {name: 'Tom'},
-    {name: 'Foo'}
+{
+    thing: 123
+}
+```
+```
+{{# thing}} will render {{/}}
+{{#! thing}} won't render {{/}}
+```
+3. loops
+```js
+something = [
+    {value: 1},
+    {value: 2}
 ];
 ```
-
 ```
-{{% some_array}}
-  {{name}}
-{{%}}
+{{@ something}}
+    {{ value }}
+{{@}}
 ```
-
-
-
-## tokenization process
-
-Read string. Match token regex from [].
-If token is matched - run it.
-
-Tokenizer will parse input, consume it (move pointer, or just eat part of string it consumed).
-It will return parsed output as string.
-
-The outputs will be later joined to string and returned as a rendered view.
+There is no support for array items in loops.
 
